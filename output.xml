@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.1.2 (Python 3.8.1 on win32)" generated="20200116 11:45:38.175" rpa="false">
+<suite id="s1" name="TC2 Post Request" source="C:\Users\zsd\PycharmProjects\testing\TestCases\TC2_Post_Request.robot">
+<test id="s1-t1" name="TC3_CreateCustomer">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>AddData</arg>
+<arg>${BaseURL}</arg>
+</arguments>
+<msg timestamp="20200116 11:45:38.454" level="INFO">Creating Session using : alias=AddData, url=http://10.100.109.153/base-client-api/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200116 11:45:38.453" endtime="20200116 11:45:38.455"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+</arguments>
+<assign>
+<var>&amp;{header}</var>
+</assign>
+<msg timestamp="20200116 11:45:38.456" level="INFO">&amp;{header} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20200116 11:45:38.455" endtime="20200116 11:45:38.456"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>AddData</arg>
+<arg>customers</arg>
+<arg>data=${CustomerRequest}</arg>
+<arg>headers=${header}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200116 11:45:38.456" level="INFO">POST Request using : uri=customers, params=None, files=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json'} 
+data={"detailedCustomer":{"login":"amira@77k55hhkk","password":"nordnet@123","blocageMail":"false","orangeCode":"orange123","createdBy":"admin","activationKey":"act123","isAccountValidated":"true","customerType":"SALER","isMarguerite":"true","orderRef":"1","rateBand":"A","hasRejection":"false","saariCode":"A","segmentTVA":"01","sendDocumentBy":"POST","versionMarguerite":"10","siret":"33","codeApe":"codéà éà","factureEuro":"true","birthDate":"2015-07-07T02:12:12+01:00","godFatherKey":"01012346006056","partner":"testOxiaéà éà#6933","defaultHandle":{"complementAddress":"Rades","localityAndPostBox":"","voie":"rue rabeg12","numVoie":"16 Ter","city":"paris","civility":"MME","company":"WEVIéà","country":"FR","email":"email_152@email.com","firstName":"FéstNàe","name":"Name2369","phone":"+33.645454","profileType":"PAR","type":"DEFAULT","zipCode":"52345","customLabel":"CustoLabji","modifiable":"true","fax":"+33.654987654","gsm":"+33.789456123","intraTVA":"12","siren":"33","birthDate":"2015-07-07T12:12:12+01:00","siret":"33","codeApe":"codApeeee","profession":"ingénieur","indicateurConservationNum":"S"},"paymentPeriod":"15"},"userInfos":{"ip":"10.2.2.2.2","userName":"test","httpUserAgent":"test"}} 
+json=None</msg>
+<msg timestamp="20200116 11:45:39.164" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20200116 11:45:38.456" endtime="20200116 11:45:39.164"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+</arguments>
+<assign>
+<var>${statuscode}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.165" level="INFO">${statuscode} = 201</msg>
+<status status="PASS" starttime="20200116 11:45:39.165" endtime="20200116 11:45:39.165"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${statuscode}</arg>
+<arg>201</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.167" endtime="20200116 11:45:39.168"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${response.content}</arg>
+</arguments>
+<assign>
+<var>${json_object}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.170" level="INFO">To JSON using : content={"customerType":"SALER","profileType":null,"login":"amira@77k55hhkk","password":null,"blocageMail":false,"factureEuro":true,"defaultHandle":{"city":"paris","civility":"MME","company":"WEVIéà","country":"FR","email":"email_152@email.com","fax":"+33.654987654","firstName":"Féstnàe","gsm":"+33.789456123","handleKey":"006630000","intraTVA":"12","name":"NAME2369","phone":"+33.645454","profileType":"PAR","siren":"33","type":"DEFAULT","zipCode":"52345","creationDate":"2020-01-16 11:45:38","changeDate":"2020-01-16 11:45:38","customLabel":"CustoLabji","modifiable":true,"dateValidationEmail":null,"activationKeyGenDate":"2020-01-16 11:45:38","emailState":"CREATED","gsmState":"CREATED","idBaseAdresse":"BA00095964","profession":"ingénieur","voie":"rue rabeg12","numVoie":"16 Ter","birthDate":"2015-07-07","siret":"33","codeApe":"codApeeee","indicateurConservationNum":"S","flagReceptionCNI":null,"flagReceptionJD":null,"flagReceptionFormulairePorta":null,"socialCapital":null,"socialForm":null,"rna":null,"proActivity":null,"address1":"16 Ter rue rabeg12","address2":"Rades","enabled":true,"dateValidationGSM":null,"pnd":false,"flagPresenceAnnuaireMVNO":false,"flagOnlyNomMVNO":false,"flagAdresseCompleteMVNO":false,"flagAntiprospectionMVNO":false,"flagPresenceAdresseEmail":false,"flagPresenceProfession":false,"flagAntiannuaireInverseMVNO":false,"commentaireFacture":null,"dateValidationSMS":null,"complementAddress":"Rades","localityAndPostBox":null},"customerKey":"32366208","godFatherKey":null,"handleKeys":["006630000"],"orangeCode":"orange123","rateBand":"A","partner":null,"saariCode":"A","hasRejection":false,"creationDate":"2020-01-16 11:45:38","changeDate":"2020-01-16 11:45:38","createdBy":"test","lastLoginDate":null,"accountValidationDate":null,"activationKey":"252001818","isMarguerite":false,"dateRegistrationMarguerite":null,"versionMarguerite":"10","isAccountValidated":false,"segmentTVA":"01","orderRef":"1","sendDocumentBy":"POST","siret":33,"codeApe":"codéà éà","birthDate":"2015-07-07","paymentPeriod":"15","customerRapprochement":null,"delaiPaiementFacture":0,"oldCustomerKey":null} </msg>
+<msg timestamp="20200116 11:45:39.170" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200116 11:45:39.170" level="INFO">${json_object} = {'customerType': 'SALER', 'profileType': None, 'login': 'amira@77k55hhkk', 'password': None, 'blocageMail': False, 'factureEuro': True, 'defaultHandle': {'city': 'paris', 'civility': 'MME', 'company':...</msg>
+<status status="PASS" starttime="20200116 11:45:39.168" endtime="20200116 11:45:39.170"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_object}</arg>
+<arg>$.customerKey</arg>
+</arguments>
+<assign>
+<var>${key}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.236" level="INFO">${key} = ['32366208']</msg>
+<status status="PASS" starttime="20200116 11:45:39.171" endtime="20200116 11:45:39.236"></status>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<doc>Logs the given message to the console.</doc>
+<arguments>
+<arg>${key[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.237" endtime="20200116 11:45:39.238"></status>
+</kw>
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>Get_CustomerByKey</arg>
+<arg>${BaseURL}</arg>
+</arguments>
+<msg timestamp="20200116 11:45:39.239" level="INFO">Creating Session using : alias=Get_CustomerByKey, url=http://10.100.109.153/base-client-api/, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20200116 11:45:39.239" endtime="20200116 11:45:39.240"></status>
+</kw>
+<kw name="Get Request" library="RequestsLibrary">
+<doc>Send a GET request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>Get_CustomerByKey</arg>
+<arg>customers/${key[0]}</arg>
+</arguments>
+<assign>
+<var>${Response}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.242" level="INFO">GET Request using : uri=customers/32366208, params=None, allow_redirects=True, timeout=None
+headers={'User-Agent': 'python-requests/2.22.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+data=None 
+json=None</msg>
+<msg timestamp="20200116 11:45:39.460" level="INFO">${Response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20200116 11:45:39.240" endtime="20200116 11:45:39.460"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${Response.content}</arg>
+</arguments>
+<assign>
+<var>${json_request}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.461" level="INFO">To JSON using : content={"customerType":"SALER","profileType":null,"login":"amira@77k55hhkk","password":null,"blocageMail":null,"factureEuro":true,"defaultHandle":{"city":"paris","civility":"MME","company":"WEVIéà","country":"FR","email":"email_152@email.com","fax":"+33.654987654","firstName":"Féstnàe","gsm":"+33.789456123","handleKey":"006630000","intraTVA":"12","name":"NAME2369","phone":"+33.645454","profileType":"PAR","siren":"33","type":"DEFAULT","zipCode":"52345","creationDate":"2020-01-16 11:45:38","changeDate":"2020-01-16 11:45:38","customLabel":"CustoLabji","modifiable":true,"dateValidationEmail":null,"activationKeyGenDate":"2020-01-16 11:45:38","emailState":"CREATED","gsmState":"CREATED","idBaseAdresse":"BA00095964","profession":"ingénieur","voie":"rue rabeg12","numVoie":"16 Ter","birthDate":"2015-07-07","siret":"33","codeApe":"codApeeee","indicateurConservationNum":"S","flagReceptionCNI":null,"flagReceptionJD":null,"flagReceptionFormulairePorta":null,"socialCapital":null,"socialForm":null,"rna":null,"proActivity":null,"address1":"16 Ter rue rabeg12","address2":"Rades","enabled":true,"dateValidationGSM":null,"pnd":false,"flagPresenceAnnuaireMVNO":false,"flagOnlyNomMVNO":false,"flagAdresseCompleteMVNO":false,"flagAntiprospectionMVNO":false,"flagPresenceAdresseEmail":false,"flagPresenceProfession":false,"flagAntiannuaireInverseMVNO":false,"commentaireFacture":null,"dateValidationSMS":null,"complementAddress":"Rades","localityAndPostBox":null},"customerKey":"32366208","godFatherKey":null,"handleKeys":["006630000"],"orangeCode":"orange123","rateBand":"A","partner":null,"saariCode":"A","hasRejection":false,"creationDate":"2020-01-16 11:45:38","changeDate":"2020-01-16 11:45:38","createdBy":"test","lastLoginDate":null,"accountValidationDate":null,"activationKey":"252001818","isMarguerite":false,"dateRegistrationMarguerite":null,"versionMarguerite":"10","isAccountValidated":false,"segmentTVA":"01","orderRef":"1","sendDocumentBy":"POST","siret":33,"codeApe":"codéà éà","birthDate":"2015-07-07","paymentPeriod":"15","customerRapprochement":[],"delaiPaiementFacture":0,"oldCustomerKey":null} </msg>
+<msg timestamp="20200116 11:45:39.461" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200116 11:45:39.461" level="INFO">${json_request} = {'customerType': 'SALER', 'profileType': None, 'login': 'amira@77k55hhkk', 'password': None, 'blocageMail': None, 'factureEuro': True, 'defaultHandle': {'city': 'paris', 'civility': 'MME', 'company': ...</msg>
+<status status="PASS" starttime="20200116 11:45:39.461" endtime="20200116 11:45:39.461"></status>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<doc>Convert a string to a JSON object</doc>
+<arguments>
+<arg>${CustomerRequest}</arg>
+</arguments>
+<assign>
+<var>${json_CustomerRequest}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.462" level="INFO">To JSON using : content={"detailedCustomer":{"login":"amira@77k55hhkk","password":"nordnet@123","blocageMail":"false","orangeCode":"orange123","createdBy":"admin","activationKey":"act123","isAccountValidated":"true","customerType":"SALER","isMarguerite":"true","orderRef":"1","rateBand":"A","hasRejection":"false","saariCode":"A","segmentTVA":"01","sendDocumentBy":"POST","versionMarguerite":"10","siret":"33","codeApe":"codéà éà","factureEuro":"true","birthDate":"2015-07-07T02:12:12+01:00","godFatherKey":"01012346006056","partner":"testOxiaéà éà#6933","defaultHandle":{"complementAddress":"Rades","localityAndPostBox":"","voie":"rue rabeg12","numVoie":"16 Ter","city":"paris","civility":"MME","company":"WEVIéà","country":"FR","email":"email_152@email.com","firstName":"FéstNàe","name":"Name2369","phone":"+33.645454","profileType":"PAR","type":"DEFAULT","zipCode":"52345","customLabel":"CustoLabji","modifiable":"true","fax":"+33.654987654","gsm":"+33.789456123","intraTVA":"12","siren":"33","birthDate":"2015-07-07T12:12:12+01:00","siret":"33","codeApe":"codApeeee","profession":"ingénieur","indicateurConservationNum":"S"},"paymentPeriod":"15"},"userInfos":{"ip":"10.2.2.2.2","userName":"test","httpUserAgent":"test"}} </msg>
+<msg timestamp="20200116 11:45:39.462" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20200116 11:45:39.462" level="INFO">${json_CustomerRequest} = {'detailedCustomer': {'login': 'amira@77k55hhkk', 'password': 'nordnet@123', 'blocageMail': 'false', 'orangeCode': 'orange123', 'createdBy': 'admin', 'activationKey': 'act123', 'isAccountValidated': '...</msg>
+<status status="PASS" starttime="20200116 11:45:39.461" endtime="20200116 11:45:39.462"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.login</arg>
+</arguments>
+<assign>
+<var>${loginCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.485" level="INFO">${loginCR} = ['amira@77k55hhkk']</msg>
+<status status="PASS" starttime="20200116 11:45:39.462" endtime="20200116 11:45:39.486"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.login</arg>
+</arguments>
+<assign>
+<var>${loginC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.507" level="INFO">${loginC} = ['amira@77k55hhkk']</msg>
+<status status="PASS" starttime="20200116 11:45:39.486" endtime="20200116 11:45:39.507"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${loginC}</arg>
+<arg>${loginCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.509" endtime="20200116 11:45:39.509"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.orangeCode</arg>
+</arguments>
+<assign>
+<var>${orangeCodeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.541" level="INFO">${orangeCodeCR} = ['orange123']</msg>
+<status status="PASS" starttime="20200116 11:45:39.509" endtime="20200116 11:45:39.541"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.orangeCode</arg>
+</arguments>
+<assign>
+<var>${orangeCodeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.568" level="INFO">${orangeCodeC} = ['orange123']</msg>
+<status status="PASS" starttime="20200116 11:45:39.541" endtime="20200116 11:45:39.568"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${orangeCodeC}</arg>
+<arg>${orangeCodeCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.569" endtime="20200116 11:45:39.569"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.customerType</arg>
+</arguments>
+<assign>
+<var>${customerTypeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.599" level="INFO">${customerTypeCR} = ['SALER']</msg>
+<status status="PASS" starttime="20200116 11:45:39.569" endtime="20200116 11:45:39.599"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.customerType</arg>
+</arguments>
+<assign>
+<var>${customerTypeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.639" level="INFO">${customerTypeC} = ['SALER']</msg>
+<status status="PASS" starttime="20200116 11:45:39.600" endtime="20200116 11:45:39.639"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${customerTypeC}</arg>
+<arg>${customerTypeCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.640" endtime="20200116 11:45:39.640"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.orderRef</arg>
+</arguments>
+<assign>
+<var>${orderRefCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.672" level="INFO">${orderRefCR} = ['1']</msg>
+<status status="PASS" starttime="20200116 11:45:39.640" endtime="20200116 11:45:39.672"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.orderRef</arg>
+</arguments>
+<assign>
+<var>${orderRefC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.702" level="INFO">${orderRefC} = ['1']</msg>
+<status status="PASS" starttime="20200116 11:45:39.672" endtime="20200116 11:45:39.702"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${orderRefC}</arg>
+<arg>${orderRefCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.703" endtime="20200116 11:45:39.703"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.rateBand</arg>
+</arguments>
+<assign>
+<var>${rateBandCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.731" level="INFO">${rateBandCR} = ['A']</msg>
+<status status="PASS" starttime="20200116 11:45:39.703" endtime="20200116 11:45:39.734"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.rateBand</arg>
+</arguments>
+<assign>
+<var>${rateBandC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.762" level="INFO">${rateBandC} = ['A']</msg>
+<status status="PASS" starttime="20200116 11:45:39.734" endtime="20200116 11:45:39.762"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${rateBandC}</arg>
+<arg>${rateBandCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.765" endtime="20200116 11:45:39.765"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.saariCode</arg>
+</arguments>
+<assign>
+<var>${saariCodeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.797" level="INFO">${saariCodeCR} = ['A']</msg>
+<status status="PASS" starttime="20200116 11:45:39.765" endtime="20200116 11:45:39.797"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.saariCode</arg>
+</arguments>
+<assign>
+<var>${saariCodeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.831" level="INFO">${saariCodeC} = ['A']</msg>
+<status status="PASS" starttime="20200116 11:45:39.799" endtime="20200116 11:45:39.831"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${saariCodeC}</arg>
+<arg>${saariCodeCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.833" endtime="20200116 11:45:39.834"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.segmentTVA</arg>
+</arguments>
+<assign>
+<var>${segmentTVACR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.861" level="INFO">${segmentTVACR} = ['01']</msg>
+<status status="PASS" starttime="20200116 11:45:39.834" endtime="20200116 11:45:39.861"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.segmentTVA</arg>
+</arguments>
+<assign>
+<var>${segmentTVAC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.893" level="INFO">${segmentTVAC} = ['01']</msg>
+<status status="PASS" starttime="20200116 11:45:39.862" endtime="20200116 11:45:39.893"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${segmentTVAC}</arg>
+<arg>${segmentTVACR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.893" endtime="20200116 11:45:39.893"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.sendDocumentBy</arg>
+</arguments>
+<assign>
+<var>${sendDocumentByCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.922" level="INFO">${sendDocumentByCR} = ['POST']</msg>
+<status status="PASS" starttime="20200116 11:45:39.894" endtime="20200116 11:45:39.922"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.sendDocumentBy</arg>
+</arguments>
+<assign>
+<var>${sendDocumentByC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.949" level="INFO">${sendDocumentByC} = ['POST']</msg>
+<status status="PASS" starttime="20200116 11:45:39.924" endtime="20200116 11:45:39.949"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${sendDocumentByC}</arg>
+<arg>${sendDocumentByCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:39.949" endtime="20200116 11:45:39.950"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.versionMarguerite</arg>
+</arguments>
+<assign>
+<var>${versionMargueriteCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.976" level="INFO">${versionMargueriteCR} = ['10']</msg>
+<status status="PASS" starttime="20200116 11:45:39.950" endtime="20200116 11:45:39.976"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.versionMarguerite</arg>
+</arguments>
+<assign>
+<var>${versionMargueriteC}</var>
+</assign>
+<msg timestamp="20200116 11:45:39.999" level="INFO">${versionMargueriteC} = ['10']</msg>
+<status status="PASS" starttime="20200116 11:45:39.979" endtime="20200116 11:45:39.999"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${versionMargueriteC}</arg>
+<arg>${versionMargueriteCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.001" endtime="20200116 11:45:40.001"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.siret</arg>
+</arguments>
+<assign>
+<var>${siretCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.026" level="INFO">${siretCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:40.002" endtime="20200116 11:45:40.026"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.siret</arg>
+</arguments>
+<assign>
+<var>${siretC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.056" level="INFO">${siretC} = [33]</msg>
+<status status="PASS" starttime="20200116 11:45:40.028" endtime="20200116 11:45:40.056"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${siretCR}</arg>
+</arguments>
+<assign>
+<var>${siretCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.057" level="INFO">${siretCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:40.057" endtime="20200116 11:45:40.057"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${siretC}</arg>
+</arguments>
+<assign>
+<var>${siretC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.058" level="INFO">${siretC} = [33]</msg>
+<status status="PASS" starttime="20200116 11:45:40.058" endtime="20200116 11:45:40.058"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${siretC[0]}</arg>
+<arg>${siretCR[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.058" endtime="20200116 11:45:40.058"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.codeApe</arg>
+</arguments>
+<assign>
+<var>${codeApeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.083" level="INFO">${codeApeCR} = ['codéà éà']</msg>
+<status status="PASS" starttime="20200116 11:45:40.058" endtime="20200116 11:45:40.083"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.codeApe</arg>
+</arguments>
+<assign>
+<var>${codeApeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.105" level="INFO">${codeApeC} = ['codéà éà']</msg>
+<status status="PASS" starttime="20200116 11:45:40.084" endtime="20200116 11:45:40.105"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${codeApeC}</arg>
+<arg>${codeApeCR}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.106" endtime="20200116 11:45:40.106"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.birthDate</arg>
+</arguments>
+<assign>
+<var>${birthDateCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.130" level="INFO">${birthDateCR} = ['2015-07-07T02:12:12+01:00']</msg>
+<status status="PASS" starttime="20200116 11:45:40.107" endtime="20200116 11:45:40.130"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.birthDate</arg>
+</arguments>
+<assign>
+<var>${birthDateC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.156" level="INFO">${birthDateC} = ['2015-07-07']</msg>
+<status status="PASS" starttime="20200116 11:45:40.132" endtime="20200116 11:45:40.156"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${birthDateCR[0]}</arg>
+<arg>${birthDateC[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.157" endtime="20200116 11:45:40.157"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.complementAddress</arg>
+</arguments>
+<assign>
+<var>${complementAddressCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.179" level="INFO">${complementAddressCR} = ['Rades']</msg>
+<status status="PASS" starttime="20200116 11:45:40.159" endtime="20200116 11:45:40.179"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.complementAddress</arg>
+</arguments>
+<assign>
+<var>${complementAddressC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.205" level="INFO">${complementAddressC} = ['Rades']</msg>
+<status status="PASS" starttime="20200116 11:45:40.183" endtime="20200116 11:45:40.205"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${complementAddressCR}</arg>
+<arg>${complementAddressC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.207" endtime="20200116 11:45:40.207"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.voie</arg>
+</arguments>
+<assign>
+<var>${voieCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.229" level="INFO">${voieCR} = ['rue rabeg12']</msg>
+<status status="PASS" starttime="20200116 11:45:40.207" endtime="20200116 11:45:40.229"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.voie</arg>
+</arguments>
+<assign>
+<var>${voieC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.286" level="INFO">${voieC} = ['rue rabeg12']</msg>
+<status status="PASS" starttime="20200116 11:45:40.233" endtime="20200116 11:45:40.286"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${voieCR}</arg>
+<arg>${voieC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.287" endtime="20200116 11:45:40.288"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.numVoie</arg>
+</arguments>
+<assign>
+<var>${numVoieCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.340" level="INFO">${numVoieCR} = ['16 Ter']</msg>
+<status status="PASS" starttime="20200116 11:45:40.289" endtime="20200116 11:45:40.340"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.numVoie</arg>
+</arguments>
+<assign>
+<var>${numVoieC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.376" level="INFO">${numVoieC} = ['16 Ter']</msg>
+<status status="PASS" starttime="20200116 11:45:40.342" endtime="20200116 11:45:40.376"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${numVoieCR}</arg>
+<arg>${numVoieC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.377" endtime="20200116 11:45:40.377"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.city</arg>
+</arguments>
+<assign>
+<var>${cityCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.400" level="INFO">${cityCR} = ['paris']</msg>
+<status status="PASS" starttime="20200116 11:45:40.377" endtime="20200116 11:45:40.404"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.city</arg>
+</arguments>
+<assign>
+<var>${cityC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.430" level="INFO">${cityC} = ['paris']</msg>
+<status status="PASS" starttime="20200116 11:45:40.404" endtime="20200116 11:45:40.430"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${cityCR}</arg>
+<arg>${cityC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.430" endtime="20200116 11:45:40.430"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.civility</arg>
+</arguments>
+<assign>
+<var>${civilityCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.455" level="INFO">${civilityCR} = ['MME']</msg>
+<status status="PASS" starttime="20200116 11:45:40.431" endtime="20200116 11:45:40.455"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.civility</arg>
+</arguments>
+<assign>
+<var>${civilityC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.480" level="INFO">${civilityC} = ['MME']</msg>
+<status status="PASS" starttime="20200116 11:45:40.457" endtime="20200116 11:45:40.480"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${civilityCR}</arg>
+<arg>${civilityC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.480" endtime="20200116 11:45:40.480"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.company</arg>
+</arguments>
+<assign>
+<var>${companyCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.506" level="INFO">${companyCR} = ['WEVIéà']</msg>
+<status status="PASS" starttime="20200116 11:45:40.481" endtime="20200116 11:45:40.506"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.company</arg>
+</arguments>
+<assign>
+<var>${companyC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.531" level="INFO">${companyC} = ['WEVIéà']</msg>
+<status status="PASS" starttime="20200116 11:45:40.508" endtime="20200116 11:45:40.531"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${companyCR}</arg>
+<arg>${companyC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.533" endtime="20200116 11:45:40.533"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.country</arg>
+</arguments>
+<assign>
+<var>${countryCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.555" level="INFO">${countryCR} = ['FR']</msg>
+<status status="PASS" starttime="20200116 11:45:40.533" endtime="20200116 11:45:40.555"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.country</arg>
+</arguments>
+<assign>
+<var>${countryC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.596" level="INFO">${countryC} = ['FR']</msg>
+<status status="PASS" starttime="20200116 11:45:40.559" endtime="20200116 11:45:40.596"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${countryCR}</arg>
+<arg>${countryC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.600" endtime="20200116 11:45:40.600"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.email</arg>
+</arguments>
+<assign>
+<var>${emailCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.626" level="INFO">${emailCR} = ['email_152@email.com']</msg>
+<status status="PASS" starttime="20200116 11:45:40.600" endtime="20200116 11:45:40.626"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.email</arg>
+</arguments>
+<assign>
+<var>${emailC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.649" level="INFO">${emailC} = ['email_152@email.com']</msg>
+<status status="PASS" starttime="20200116 11:45:40.627" endtime="20200116 11:45:40.649"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${emailCR}</arg>
+<arg>${emailC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.652" endtime="20200116 11:45:40.652"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.phone</arg>
+</arguments>
+<assign>
+<var>${phoneCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.676" level="INFO">${phoneCR} = ['+33.645454']</msg>
+<status status="PASS" starttime="20200116 11:45:40.654" endtime="20200116 11:45:40.676"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.phone</arg>
+</arguments>
+<assign>
+<var>${phoneC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.706" level="INFO">${phoneC} = ['+33.645454']</msg>
+<status status="PASS" starttime="20200116 11:45:40.678" endtime="20200116 11:45:40.706"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${phoneCR}</arg>
+<arg>${phoneC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.706" endtime="20200116 11:45:40.706"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.profileType</arg>
+</arguments>
+<assign>
+<var>${profileTypeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.732" level="INFO">${profileTypeCR} = ['PAR']</msg>
+<status status="PASS" starttime="20200116 11:45:40.707" endtime="20200116 11:45:40.732"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.profileType</arg>
+</arguments>
+<assign>
+<var>${profileTypeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.755" level="INFO">${profileTypeC} = ['PAR']</msg>
+<status status="PASS" starttime="20200116 11:45:40.733" endtime="20200116 11:45:40.755"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${profileTypeCR}</arg>
+<arg>${profileTypeC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.756" endtime="20200116 11:45:40.756"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.type</arg>
+</arguments>
+<assign>
+<var>${typeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.781" level="INFO">${typeCR} = ['DEFAULT']</msg>
+<status status="PASS" starttime="20200116 11:45:40.756" endtime="20200116 11:45:40.781"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.type</arg>
+</arguments>
+<assign>
+<var>${typeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.805" level="INFO">${typeC} = ['DEFAULT']</msg>
+<status status="PASS" starttime="20200116 11:45:40.782" endtime="20200116 11:45:40.805"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${typeCR}</arg>
+<arg>${typeC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.808" endtime="20200116 11:45:40.808"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.zipCode</arg>
+</arguments>
+<assign>
+<var>${zipCodeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.831" level="INFO">${zipCodeCR} = ['52345']</msg>
+<status status="PASS" starttime="20200116 11:45:40.808" endtime="20200116 11:45:40.831"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.zipCode</arg>
+</arguments>
+<assign>
+<var>${zipCodeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.857" level="INFO">${zipCodeC} = ['52345']</msg>
+<status status="PASS" starttime="20200116 11:45:40.832" endtime="20200116 11:45:40.857"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${zipCodeCR}</arg>
+<arg>${zipCodeC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.860" endtime="20200116 11:45:40.860"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.customLabel</arg>
+</arguments>
+<assign>
+<var>${customLabelCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.887" level="INFO">${customLabelCR} = ['CustoLabji']</msg>
+<status status="PASS" starttime="20200116 11:45:40.861" endtime="20200116 11:45:40.887"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.customLabel</arg>
+</arguments>
+<assign>
+<var>${customLabelC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.911" level="INFO">${customLabelC} = ['CustoLabji']</msg>
+<status status="PASS" starttime="20200116 11:45:40.888" endtime="20200116 11:45:40.911"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${customLabelCR}</arg>
+<arg>${customLabelC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.912" endtime="20200116 11:45:40.912"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.fax</arg>
+</arguments>
+<assign>
+<var>${faxCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.938" level="INFO">${faxCR} = ['+33.654987654']</msg>
+<status status="PASS" starttime="20200116 11:45:40.913" endtime="20200116 11:45:40.938"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.fax</arg>
+</arguments>
+<assign>
+<var>${faxC}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.965" level="INFO">${faxC} = ['+33.654987654']</msg>
+<status status="PASS" starttime="20200116 11:45:40.938" endtime="20200116 11:45:40.966"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${faxCR}</arg>
+<arg>${faxC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:40.966" endtime="20200116 11:45:40.966"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.gsm</arg>
+</arguments>
+<assign>
+<var>${gsmCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:40.990" level="INFO">${gsmCR} = ['+33.789456123']</msg>
+<status status="PASS" starttime="20200116 11:45:40.966" endtime="20200116 11:45:40.990"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.gsm</arg>
+</arguments>
+<assign>
+<var>${gsmC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.014" level="INFO">${gsmC} = ['+33.789456123']</msg>
+<status status="PASS" starttime="20200116 11:45:40.991" endtime="20200116 11:45:41.014"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${gsmCR}</arg>
+<arg>${gsmC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.015" endtime="20200116 11:45:41.015"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.intraTVA</arg>
+</arguments>
+<assign>
+<var>${intraTVACR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.037" level="INFO">${intraTVACR} = ['12']</msg>
+<status status="PASS" starttime="20200116 11:45:41.015" endtime="20200116 11:45:41.037"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.intraTVA</arg>
+</arguments>
+<assign>
+<var>${intraTVAC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.065" level="INFO">${intraTVAC} = ['12']</msg>
+<status status="PASS" starttime="20200116 11:45:41.038" endtime="20200116 11:45:41.065"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${intraTVACR}</arg>
+<arg>${intraTVAC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.065" endtime="20200116 11:45:41.066"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.siren</arg>
+</arguments>
+<assign>
+<var>${sirenCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.088" level="INFO">${sirenCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.066" endtime="20200116 11:45:41.088"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.siren</arg>
+</arguments>
+<assign>
+<var>${sirenC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.116" level="INFO">${sirenC} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.092" endtime="20200116 11:45:41.116"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${sirenCR}</arg>
+</arguments>
+<assign>
+<var>${sirenCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.118" level="INFO">${sirenCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.118" endtime="20200116 11:45:41.118"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${sirenC}</arg>
+</arguments>
+<assign>
+<var>${sirenC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.119" level="INFO">${sirenC} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.118" endtime="20200116 11:45:41.119"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${sirenC[0]}</arg>
+<arg>${sirenCR[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.119" endtime="20200116 11:45:41.119"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.siret</arg>
+</arguments>
+<assign>
+<var>${siretCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.145" level="INFO">${siretCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.120" endtime="20200116 11:45:41.145"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.siret</arg>
+</arguments>
+<assign>
+<var>${siretC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.173" level="INFO">${siretC} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.147" endtime="20200116 11:45:41.173"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${siretCR}</arg>
+</arguments>
+<assign>
+<var>${siretCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.174" level="INFO">${siretCR} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.174" endtime="20200116 11:45:41.174"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${siretC}</arg>
+</arguments>
+<assign>
+<var>${siretC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.176" level="INFO">${siretC} = ['33']</msg>
+<status status="PASS" starttime="20200116 11:45:41.176" endtime="20200116 11:45:41.176"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${siretC[0]}</arg>
+<arg>${siretCR[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.176" endtime="20200116 11:45:41.177"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.birthDate</arg>
+</arguments>
+<assign>
+<var>${birthDateCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.201" level="INFO">${birthDateCR} = ['2015-07-07T12:12:12+01:00']</msg>
+<status status="PASS" starttime="20200116 11:45:41.177" endtime="20200116 11:45:41.201"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.birthDate</arg>
+</arguments>
+<assign>
+<var>${birthDateC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.226" level="INFO">${birthDateC} = ['2015-07-07']</msg>
+<status status="PASS" starttime="20200116 11:45:41.201" endtime="20200116 11:45:41.226"></status>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<arguments>
+<arg>${birthDateCR[0]}</arg>
+<arg>${birthDateC[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.229" endtime="20200116 11:45:41.229"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.codeApe</arg>
+</arguments>
+<assign>
+<var>${codeApeCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.256" level="INFO">${codeApeCR} = ['codApeeee']</msg>
+<status status="PASS" starttime="20200116 11:45:41.230" endtime="20200116 11:45:41.256"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.codeApe</arg>
+</arguments>
+<assign>
+<var>${codeApeC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.279" level="INFO">${codeApeC} = ['codApeeee']</msg>
+<status status="PASS" starttime="20200116 11:45:41.257" endtime="20200116 11:45:41.279"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${codeApeCR}</arg>
+<arg>${codeApeC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.283" endtime="20200116 11:45:41.283"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.profession</arg>
+</arguments>
+<assign>
+<var>${professionCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.309" level="INFO">${professionCR} = ['ingénieur']</msg>
+<status status="PASS" starttime="20200116 11:45:41.284" endtime="20200116 11:45:41.309"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.profession</arg>
+</arguments>
+<assign>
+<var>${professionC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.335" level="INFO">${professionC} = ['ingénieur']</msg>
+<status status="PASS" starttime="20200116 11:45:41.312" endtime="20200116 11:45:41.335"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${professionCR}</arg>
+<arg>${professionC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.336" endtime="20200116 11:45:41.336"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.defaultHandle.indicateurConservationNum</arg>
+</arguments>
+<assign>
+<var>${indicateurConservationNumCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.366" level="INFO">${indicateurConservationNumCR} = ['S']</msg>
+<status status="PASS" starttime="20200116 11:45:41.337" endtime="20200116 11:45:41.366"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.defaultHandle.indicateurConservationNum</arg>
+</arguments>
+<assign>
+<var>${indicateurConservationNumC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.395" level="INFO">${indicateurConservationNumC} = ['S']</msg>
+<status status="PASS" starttime="20200116 11:45:41.367" endtime="20200116 11:45:41.395"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${indicateurConservationNumCR}</arg>
+<arg>${indicateurConservationNumC}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.398" endtime="20200116 11:45:41.398"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_CustomerRequest}</arg>
+<arg>$.detailedCustomer.paymentPeriod</arg>
+</arguments>
+<assign>
+<var>${paymentPeriodCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.421" level="INFO">${paymentPeriodCR} = ['15']</msg>
+<status status="PASS" starttime="20200116 11:45:41.399" endtime="20200116 11:45:41.421"></status>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<doc>Get Value From JSON using JSONPath</doc>
+<arguments>
+<arg>${json_request}</arg>
+<arg>$.paymentPeriod</arg>
+</arguments>
+<assign>
+<var>${paymentPeriodC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.456" level="INFO">${paymentPeriodC} = ['15']</msg>
+<status status="PASS" starttime="20200116 11:45:41.422" endtime="20200116 11:45:41.456"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${paymentPeriodCR}</arg>
+</arguments>
+<assign>
+<var>${paymentPeriodCR}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.460" level="INFO">${paymentPeriodCR} = ['15']</msg>
+<status status="PASS" starttime="20200116 11:45:41.459" endtime="20200116 11:45:41.460"></status>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<doc>Converts the given item to a Unicode string.</doc>
+<arguments>
+<arg>${paymentPeriodC}</arg>
+</arguments>
+<assign>
+<var>${paymentPeriodC}</var>
+</assign>
+<msg timestamp="20200116 11:45:41.461" level="INFO">${paymentPeriodC} = ['15']</msg>
+<status status="PASS" starttime="20200116 11:45:41.460" endtime="20200116 11:45:41.461"></status>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<doc>Fails if the given objects are unequal.</doc>
+<arguments>
+<arg>${paymentPeriodCR[0]}</arg>
+<arg>${paymentPeriodC[0]}</arg>
+</arguments>
+<status status="PASS" starttime="20200116 11:45:41.462" endtime="20200116 11:45:41.463"></status>
+</kw>
+<status status="PASS" starttime="20200116 11:45:38.453" endtime="20200116 11:45:41.464" critical="yes"></status>
+</test>
+<status status="PASS" starttime="20200116 11:45:38.176" endtime="20200116 11:45:41.465"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0">Critical Tests</stat>
+<stat pass="1" fail="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" id="s1" name="TC2 Post Request">TC2 Post Request</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

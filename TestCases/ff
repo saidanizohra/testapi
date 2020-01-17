@@ -1,0 +1,7 @@
+#check that the customer is created
+    create session  Get_CustomerByKey  ${BaseURL}
+    ${Response}=  get request  Get_CustomerByKey  customers/${key[0]}
+    #${body}=  convert to string  ${Response.content}
+    #log to console  ${body}
+    ${json_request}=  to json  ${Response.content}
+    #should be Equal  ${json_object}  ${json_request}
